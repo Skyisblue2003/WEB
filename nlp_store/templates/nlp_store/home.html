@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ระบบแนะนำสินค้า</title>
+    <style>
+        body { font-family: 'Sarabun', sans-serif; padding: 30px; background: #f9f9f9; }
+        h1 { color: #333; }
+        form { margin-bottom: 20px; }
+        input[type=text] { padding: 10px; width: 300px; }
+        input[type=submit] { padding: 10px 15px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+        .product-card { border: 1px solid #ccc; padding: 10px; margin: 10px 0; background: white; }
+        .product-img { width: 100px; height: 100px; object-fit: cover; }
+    </style>
+</head>
+<body>
+    <h1>🔍 ระบบแนะนำสินค้า</h1>
+
+    <form method="get">
+        <input type="text" name="search" placeholder="กรอกชื่อสินค้า..." required>
+        <input type="submit" value="ค้นหา">
+    </form>
+
+    {% if query %}
+        <h2>ผลการค้นหา "{{ query }}"</h2>
+    {% endif %}
+
+    {% if suggestion_text %}
+        <p style="color: red;">{{ suggestion_text }}</p>
+    {% endif %}
+
+    {% for product in products %}
+        <div class="product-card">
+            <h3>{{ product.product }}</h3>
+            <p>{{ product.description }}</p>
+            {% if product.image_path %}
+                <img src="{{ product.image_path.url }}" class="product-img" alt="{{ product.product }}">
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>ไม่พบสินค้าที่ค้นหา</p>
+    {% endfor %}
+
+    {% for name, desc, img_path in similar_products %}
+        <div class="product-card">
+            <h3>{{ name }}</h3>
+            <p>{{ desc }}</p>
+            <img src="{% static img_path %}" class="product-img" alt="{{ name }}">
+        </div>
+    {% endfor %}
+</body>
+</html>
