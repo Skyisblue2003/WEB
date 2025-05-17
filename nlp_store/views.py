@@ -13,7 +13,7 @@ import os
 # โหลดและเตรียมข้อมูลจาก CSV
 file_path = os.path.join(settings.BASE_DIR, 'nlp_store', 'static', 'fashion_products_thai.csv')
 df = pd.read_csv(file_path)
-
+df["image_path"] = df["image_path"].apply(lambda x: os.path.basename(str(x)))
 def clean_text(text):
     text = str(text).lower().strip()
     text = re.sub(f"[{string.punctuation}]", "", text)
