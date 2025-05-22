@@ -1,0 +1,44 @@
+body {
+    font-family: 'Sarabun', sans-serif;
+    padding: 30px;
+    background: #f9f9f9;
+}
+h1 {
+    color: #333;
+}
+form {
+    margin-bottom: 20px;
+}
+input[type=text] {
+    padding: 10px;
+    width: 300px;
+}
+input[type=submit] {
+    padding: 10px 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+.product-card {
+    flex: 1 1 calc(33.333% - 20px);
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: white;
+    box-sizing: border-box;
+}
+.product-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 1px solid #CCC;
+    background-color: #f0f0f0;
+    display: block;
+    margin-top: 10px;
+}
